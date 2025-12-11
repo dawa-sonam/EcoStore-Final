@@ -1,73 +1,133 @@
-# Welcome to your Lovable project
+# EcoStore - Multi-Location Retail Management Dashboard
 
-## Project info
+A modern dashboard application for managing multiple retail store locations. Track sales, monitor employees, manage inventory, and view activity across all your stores.
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+## Project Structure
 
-## How can I edit this code?
-
-There are several ways of editing your application.
-
-**Use Lovable**
-
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
-
-Changes made via Lovable will be committed automatically to this repo.
-
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+```
+EcoStore-Final/
+├── frontend/          # React frontend application
+│   ├── src/          # Source code
+│   │   ├── components/  # React components
+│   │   ├── pages/      # Page components
+│   │   ├── hooks/      # Custom React hooks
+│   │   └── lib/        # Utility functions
+│   ├── public/       # Static assets
+│   └── package.json  # Frontend dependencies
+│
+├── backend/          # Backend API (to be implemented)
+│   ├── src/          # Backend source code
+│   └── package.json  # Backend dependencies
+│
+└── package.json      # Root workspace configuration
 ```
 
-**Edit a file directly in GitHub**
+## Technologies
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+### Frontend
+- **Vite** - Build tool and dev server
+- **React** - UI library
+- **TypeScript** - Type safety
+- **shadcn-ui** - UI component library
+- **Tailwind CSS** - Styling
+- **React Router** - Routing
+- **TanStack Query** - Data fetching
+- **Recharts** - Data visualization
 
-**Use GitHub Codespaces**
+### Backend
+- To be implemented
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+## Getting Started
 
-## What technologies are used for this project?
+### Prerequisites
 
-This project is built with:
+- Node.js (v18 or higher)
+- npm or yarn
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+### Installation
 
-## How can I deploy this project?
+1. Clone the repository:
+```bash
+git clone https://github.com/dawa-sonam/EcoStore-Final.git
+cd EcoStore-Final
+```
 
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
+2. Install all dependencies:
+```bash
+npm run install:all
+```
 
-## Can I connect a custom domain to my Lovable project?
+Or install frontend dependencies separately:
+```bash
+cd frontend
+npm install
+```
 
-Yes, you can!
+### Development
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+Start the frontend development server:
+```bash
+npm run dev
+# or
+npm run dev:frontend
+```
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+The application will be available at `http://localhost:8080`
+
+### Building
+
+Build the frontend for production:
+```bash
+npm run build
+# or
+npm run build:frontend
+```
+
+## Features
+
+- **Dashboard Overview**: View sales, locations, employees, and alerts at a glance
+- **Location Management**: Track performance across multiple store locations
+- **Sales Tracking**: Monitor daily sales and cash variance
+- **Activity Feed**: Real-time activity updates from all locations
+- **Responsive Design**: Works on desktop and mobile devices
+
+## Project Organization
+
+### Frontend (`/frontend`)
+- All React components, pages, and UI logic
+- Vite configuration and build setup
+- Tailwind CSS styling configuration
+
+### Backend (`/backend`)
+- Future API endpoints for:
+  - Store location management
+  - Sales data and reporting
+  - Employee management
+  - Inventory tracking
+  - Authentication and authorization
+
+## Scripts
+
+### Root Level
+- `npm run dev` - Start frontend dev server
+- `npm run build` - Build frontend for production
+- `npm run lint` - Lint frontend code
+- `npm run install:all` - Install all workspace dependencies
+
+### Frontend (`/frontend`)
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run preview` - Preview production build
+- `npm run lint` - Run ESLint
+
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## License
+
+ISC

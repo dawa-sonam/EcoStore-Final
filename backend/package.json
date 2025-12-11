@@ -1,0 +1,20 @@
+{
+  "name": "ecostore-backend",
+  "version": "1.0.0",
+  "description": "Backend API for EcoStore - Multi-location retail management system",
+  "main": "src/index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "echo 'Backend development server - to be implemented'",
+    "start": "echo 'Backend production server - to be implemented'",
+    "test": "echo 'Backend tests - to be implemented'"
+  },
+  "keywords": [
+    "retail",
+    "store-management",
+    "api"
+  ],
+  "author": "",
+  "license": "ISC"
+}
+
