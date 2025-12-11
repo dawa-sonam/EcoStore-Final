@@ -8,8 +8,10 @@ import {
   AlertTriangle,
   Settings,
   X,
+  FileText,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useNavigate } from "react-router-dom";
 
 interface SidebarProps {
   isOpen: boolean;
@@ -19,16 +21,19 @@ interface SidebarProps {
 }
 
 const navItems = [
-  { id: "dashboard", label: "Dashboard", icon: LayoutDashboard },
-  { id: "locations", label: "Locations", icon: MapPin },
-  { id: "reports", label: "Reports", icon: BarChart3 },
-  { id: "employees", label: "Employees", icon: Users },
-  { id: "inventory", label: "Inventory", icon: Package },
-  { id: "alerts", label: "Alerts", icon: AlertTriangle, badge: 3 },
-  { id: "settings", label: "Settings", icon: Settings },
+  { id: "dashboard", label: "Dashboard", icon: LayoutDashboard, path: "/" },
+  { id: "eod", label: "EOD Submission", icon: FileText, path: "/eod" },
+  { id: "locations", label: "Locations", icon: MapPin, path: "/" },
+  { id: "reports", label: "Reports", icon: BarChart3, path: "/" },
+  { id: "employees", label: "Employees", icon: Users, path: "/" },
+  { id: "inventory", label: "Inventory", icon: Package, path: "/" },
+  { id: "alerts", label: "Alerts", icon: AlertTriangle, badge: 3, path: "/" },
+  { id: "settings", label: "Settings", icon: Settings, path: "/" },
 ];
 
 export function Sidebar({ isOpen, onClose, activeItem, onItemClick }: SidebarProps) {
+  const navigate = useNavigate();
+
   return (
     <>
       {/* Mobile overlay */}
@@ -66,6 +71,9 @@ export function Sidebar({ isOpen, onClose, activeItem, onItemClick }: SidebarPro
                   key={item.id}
                   onClick={() => {
                     onItemClick(item.id);
+                    if (item.path) {
+                      navigate(item.path);
+                    }
                     onClose();
                   }}
                   className={cn(
