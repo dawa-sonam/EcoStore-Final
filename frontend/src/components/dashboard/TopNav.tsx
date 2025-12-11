@@ -1,4 +1,4 @@
-import { ChevronDown, Bell, Menu } from "lucide-react";
+import { ChevronDown, Bell, Menu, Plus } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -14,18 +14,14 @@ interface TopNavProps {
   selectedLocation: string;
   onLocationChange: (location: string) => void;
   onMenuToggle: () => void;
+  onAddLocation: () => void;
+  locations: Array<{ id: string; name: string }>;
 }
 
-const locations = [
-  { id: "all", name: "All Locations" },
-  { id: "store-1", name: "Downtown Express" },
-  { id: "store-2", name: "Westside Mini Mart" },
-  { id: "store-3", name: "Airport Quick Stop" },
-  { id: "store-4", name: "University Corner" },
-];
-
-export function TopNav({ selectedLocation, onLocationChange, onMenuToggle }: TopNavProps) {
-  const currentLocation = locations.find((l) => l.id === selectedLocation) || locations[0];
+export function TopNav({ selectedLocation, onLocationChange, onMenuToggle, onAddLocation, locations }: TopNavProps) {
+  const allLocationsOption = { id: "all", name: "All Locations" };
+  const locationOptions = [allLocationsOption, ...locations];
+  const currentLocation = locationOptions.find((l) => l.id === selectedLocation) || allLocationsOption;
 
   return (
     <header className="h-16 bg-card border-b border-border flex items-center justify-between px-4 lg:px-6">
@@ -58,7 +54,7 @@ export function TopNav({ selectedLocation, onLocationChange, onMenuToggle }: Top
           <DropdownMenuContent align="start" className="w-56">
             <DropdownMenuLabel>Select Location</DropdownMenuLabel>
             <DropdownMenuSeparator />
-            {locations.map((location) => (
+            {locationOptions.map((location) => (
               <DropdownMenuItem
                 key={location.id}
                 onClick={() => onLocationChange(location.id)}
@@ -67,6 +63,11 @@ export function TopNav({ selectedLocation, onLocationChange, onMenuToggle }: Top
                 {location.name}
               </DropdownMenuItem>
             ))}
+            <DropdownMenuSeparator />
+            <DropdownMenuItem onClick={onAddLocation} className="text-primary">
+              <Plus className="h-4 w-4 mr-2" />
+              Add New Location
+            </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       </div>

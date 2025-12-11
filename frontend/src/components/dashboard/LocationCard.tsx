@@ -1,13 +1,11 @@
 import { cn } from "@/lib/utils";
-import { MapPin, TrendingUp, TrendingDown, AlertCircle, CheckCircle } from "lucide-react";
+import { MapPin, TrendingUp, TrendingDown, AlertCircle, CheckCircle, User, Clock } from "lucide-react";
+import { Location } from "@/types/location";
+import { formatDistanceToNow } from "date-fns";
 
-interface LocationCardProps {
-  name: string;
-  address: string;
-  todaySales: number;
-  cashVariance: number;
-  status: "good" | "warning" | "critical";
+interface LocationCardProps extends Omit<Location, "hourlySales" | "employees" | "recentTransactions" | "inventory"> {
   delay?: number;
+  onClick?: () => void;
 }
 
 export function LocationCard({
@@ -16,7 +14,10 @@ export function LocationCard({
   todaySales,
   cashVariance,
   status,
+  managerName,
+  lastUpdated,
   delay = 0,
+  onClick,
 }: LocationCardProps) {
   const statusConfig = {
     good: {
@@ -41,8 +42,12 @@ export function LocationCard({
 
   return (
     <div
-      className="dashboard-card p-5 opacity-0 animate-fade-in"
+      className={cn(
+        "dashboard-card p-5 opacity-0 animate-fade-in",
+        onClick && "cursor-pointer hover:border-primary/50"
+      )}
       style={{ animationDelay: `${delay}ms` }}
+      onClick={onClick}
     >
       <div className="flex items-start justify-between mb-4">
         <div className="flex items-center gap-3">
@@ -65,7 +70,7 @@ export function LocationCard({
         </span>
       </div>
 
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-2 gap-4 mb-3">
         <div>
           <p className="text-xs text-muted-foreground mb-1">Today's Sales</p>
           <p className="text-lg font-bold text-foreground">
@@ -86,8 +91,21 @@ export function LocationCard({
                 variancePositive ? "text-success" : "text-destructive"
               )}
             >
-              {variancePositive ? "+" : ""}${cashVariance.toFixed(2)}
+              {variancePositive ? "+" : ""}${Math.abs(cashVariance).toFixed(2)}
             </p>
+          </div>
+        </div>
+      </div>
+
+      <div className="pt-3 border-t border-border">
+        <div className="flex items-center justify-between text-xs">
+          <div className="flex items-center gap-2 text-muted-foreground">
+            <User className="h-3 w-3" />
+            <span>{managerName}</span>
+          </div>
+          <div className="flex items-center gap-1 text-muted-foreground">
+            <Clock className="h-3 w-3" />
+            <span>{formatDistanceToNow(lastUpdated, { addSuffix: true })}</span>
           </div>
         </div>
       </div>
